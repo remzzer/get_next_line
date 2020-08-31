@@ -11,45 +11,35 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+#define BUFSIZE 10
 
-
-int		find_c(char *str)
+int		main(void)
 {
-	int		i;
+	int		fd;
+	int		r_read;
+	char buf[BUFSIZE + 1];
 
-	i = 0;
-	while (str[i])
+	fd = open("test_empty.txt", O_RDONLY);
+	//fd = open("test.txt", O_RDONLY);
+	if (fd == -1)
 	{
-		if (str[i] == '\n')
-			return (i);
-		i++;
+		ft_putstr_fd("open() fail", 1);
+		return (1);
 	}
-	return (-1);
-}
-
-int		is_store_empty(char *store)
-{
-	int		len;
-
-	len = ft_strlen(store);
-	if (len == 0)
+	//r_read = read(fd, buf, BUFSIZE);
+	while ((r_read = read(fd, buf, BUFSIZE)))
 	{
+		buf[r_read] = '\0'; //fin de char apres longueur de r_read (BUFSIZE)
+		ft_putstr_fd(buf, 1); //print contenu de buf
+		ft_putnbr_fd(r_read, 1); //Nombre d'octet 
+	}
+	buf[BUFSIZE] = '\0';
+	ft_putnbr_fd(r_read, 1); //Nombre d'octet lus au total
+	if (close(fd) == -1)
+	{
+		ft_putstr_fd("close() fail", 1);
 		return (1);
 	}
 	return (0);
-}
-
-int		split_store_in_line(char **store, char **line, int n)
-{
-	char	*temp;
-
-	*store[n] = '\0';
-	*line = ft_strdup(*store);
-	temp = ft_strdup(*store + n + 1);
-
-}
-
-int		get_next_line(int fd, char **line)
-{
-	
 }

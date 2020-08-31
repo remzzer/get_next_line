@@ -12,43 +12,77 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t		ft_strlen(const char *str)
 {
 	size_t		i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
-void	ft_putchar_fd(char c, int fd)
+size_t		ft_strlcpy(char *dst, const char *src, size_t dst_size)
 {
-	write(fd, &c, 1);
+	size_t		i;
+
+	if (!src || !dst)
+		return (0);
+	if (dst_size == 0)
+		return (ft_strlen(src));
+	i = 0;
+	while (i < dst_size - 1 && src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }
 
-void	ft_putnbr_fd(int n, int fd)
+char		*ft_strdup(const char *src)
 {
-	long	num;
-	char	c;
+	char	*dst;
+	size_t	len;
+	size_t	i;
 
-	num = n;
-	if (num < 0)
+	len = ft_strlen(src);
+	i = 0;
+	dst = malloc(sizeof(*dst) * (len + 1));
+	if (!dst)
+		return (NULL);
+	while (i < len)
 	{
-		ft_putchar_fd('-', fd);
-		num = -num;
+		dst[i] = src[i];
+		i++;
 	}
-	if (num > 9)
-		ft_putnbr_fd(num / 10, fd);
-	c = num % 10 + 48;
-	ft_putchar_fd(c, fd);
+	dst[i] = '\0';
+	return (dst);
 }
 
-void	ft_putstr_fd(char *str, int fd)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
-	if (str == NULL)
+	size_t		i;
+	size_t		j;
+	char		*str;
+
+	if (!s1 || !s2)
+		return (NULL);
+	if (!(str = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2)) + 1))
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		return ;
+		str[i] = s1[i];
+		i++;
 	}
-	write(fd, &str[0], ft_strlen(str));
+	j = 0;
+	while (s2[j])
+	{
+	str[i] = s2[j];
+	i++;
+	j++;
+	}
+	str[i] = '\0';
+	return (str);
 }

@@ -17,9 +17,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int n, int fd);
-void	ft_putstr_fd(char *str, int fd);
-size_t	ft_strlen(char *str);
+#define BUFFER_SIZE 32
+
+size_t		ft_strlen(const char *str);
+char		*ft_strdup(const char *src);
+char		*ft_strjoin(char const *s1, char const *s2);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dst_size);
+int			get_next_line(int fd, char **line);
+
 #endif
