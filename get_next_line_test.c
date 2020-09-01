@@ -12,13 +12,12 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
-#define BUFSIZE 10
 
 int		main(void)
 {
 	int		fd;
 	int		r_read;
-	char buf[BUFSIZE + 1];
+	char buf[BUFFER_SIZE + 1];
 
 	fd = open("test_empty.txt", O_RDONLY);
 	//fd = open("test.txt", O_RDONLY);
@@ -27,14 +26,13 @@ int		main(void)
 		ft_putstr_fd("open() fail", 1);
 		return (1);
 	}
-	//r_read = read(fd, buf, BUFSIZE);
-	while ((r_read = read(fd, buf, BUFSIZE)))
+	while ((r_read = read(fd, buf, BUFFER_SIZE)))
 	{
 		buf[r_read] = '\0'; //fin de char apres longueur de r_read (BUFSIZE)
 		ft_putstr_fd(buf, 1); //print contenu de buf
-		ft_putnbr_fd(r_read, 1); //Nombre d'octet 
+		ft_putnbr_fd(r_read, 1); //Nombre d'octet
 	}
-	buf[BUFSIZE] = '\0';
+	buf[BUFFER_SIZE] = '\0';
 	ft_putnbr_fd(r_read, 1); //Nombre d'octet lus au total
 	if (close(fd) == -1)
 	{
