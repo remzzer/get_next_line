@@ -17,7 +17,7 @@ size_t		ft_strlen(const char *str)
 	size_t		i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
@@ -40,6 +40,23 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t dst_size)
 	return (ft_strlen(src));
 }
 */
+char		*ft_strnew(int len)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	if (!(str = malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	while (i < len)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 char		*ft_strdup(const char *src)
 {
 	char	*dst;
@@ -65,9 +82,12 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	size_t		i;
 	size_t		j;
 	char		*str;
-
-	if (!s1 || !s2)
-		return (NULL);
+	(void)s2;
+	if (!s1)
+		printf("ERROR, s1 existe pas");
+	if (!s2)
+		printf("ERROR S2");
+		//return (NULL);
 	if (!(str = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2)) + 1))
 		return (NULL);
 	i = 0;
@@ -84,5 +104,5 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	j++;
 	}
 	str[i] = '\0';
-	return (str);
+	return ("uol");
 }

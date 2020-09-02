@@ -55,18 +55,33 @@ int		split_store_in_line(char **store, char **line, int n)
 int		get_next_line(int fd, char **line)
 {
 	int		r_read;
-	int		n;
+	//int		n;
 	char	buf[BUFFER_SIZE + 1];
 	char	*store[64];
+
+	store[fd] = ft_strnew(1);
+	store[fd] = "";
 
 	if (read < 0 || fd < 0 || BUFFER_SIZE < 1 || !line)
 		return (-1);
 	while ((r_read = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[r_read] = '\0';
+	//	if (!store[fd])
+	//	{
+			//store[fd] = ft_strdup(buf);
+	//		printf("this is store: |%s\n", store[fd]);
+	//		printf("this is buf: |%s\n", buf);
+	//		return (1);
+	//	}
+	if (store[fd])
+	{
 		store[fd] = ft_strjoin(store[fd], buf);
-		if ((n = find_c(store[fd])) >= 0)
-			return (split_store_in_line(&store[fd], line, n));
+		//if ((n = find_c(store[fd])) >= 0)
+		//	return (split_store_in_line(&store[fd], line, n));
+		printf("This is store[fd] | %s\n", store[fd]);
 	}
+	}
+	//printf("Buf:|%s\n", buf);
 	return (0);
 }
