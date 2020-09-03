@@ -62,11 +62,12 @@ char		*ft_strdup(const char *src)
 	char	*dst;
 	size_t	len;
 	size_t	i;
-
+	
+	printf("src: %s", src);
 	len = ft_strlen(src);
+	printf("len : %zu", len);
 	i = 0;
-	dst = malloc(sizeof(*dst) * (len + 1));
-	if (!dst)
+	if (!(dst = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	while (i < len)
 	{
@@ -74,6 +75,7 @@ char		*ft_strdup(const char *src)
 		i++;
 	}
 	dst[i] = '\0';
+	printf("dst :%s", dst);
 	return (dst);
 }
 
@@ -82,7 +84,6 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	size_t		i;
 	size_t		j;
 	char		*str;
-	(void)s2;
 	if (!s1)
 		printf("ERROR, s1 existe pas");
 	if (!s2)
@@ -96,6 +97,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 		str[i] = s1[i];
 		i++;
 	}
+	//free(s1);
 	j = 0;
 	while (s2[j])
 	{
@@ -104,5 +106,5 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	j++;
 	}
 	str[i] = '\0';
-	return ("uol");
+	return (str);
 }

@@ -39,6 +39,15 @@ int		is_store_empty(char *store)
 	return (0);
 }
 */
+static void	ft_putstr_fd(char *s)
+{
+	if (s == NULL)
+	{
+		return ;
+	}
+	write(1, &s[0], ft_strlen(s));
+}
+
 int		split_store_in_line(char **store, char **line, int n)
 {
 	char	*temp;
@@ -58,30 +67,31 @@ int		get_next_line(int fd, char **line)
 	//int		n;
 	char	buf[BUFFER_SIZE + 1];
 	char	*store[64];
+	//char	*ptr;
 
-	store[fd] = ft_strnew(1);
-	store[fd] = "";
+	//store[fd] = ft_strnew(0);
+	//store[fd] = "";
 
 	if (read < 0 || fd < 0 || BUFFER_SIZE < 1 || !line)
 		return (-1);
 	while ((r_read = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[r_read] = '\0';
-	//	if (!store[fd])
-	//	{
-			//store[fd] = ft_strdup(buf);
-	//		printf("this is store: |%s\n", store[fd]);
-	//		printf("this is buf: |%s\n", buf);
-	//		return (1);
-	//	}
-	if (store[fd])
-	{
-		store[fd] = ft_strjoin(store[fd], buf);
+		if (!store[fd])
+		{
+			//ptr = ft_strdup(buf);
+			//printf("Before, this is buf\n: |%s\n", buf);
+			//printf("%s", ptr);
+			store[fd] = ft_strdup(buf);
+			//printf("this is store: |%s\n", store[fd]);
+			//printf("After, this is buf\n: |%s\n", buf);
+		}
+		//printf("this is buf: |%s\n", buf);
+		//printf("this is store: |%s\n", store[fd]);
+		//store[fd] = ft_strjoin(store[fd], buf);
 		//if ((n = find_c(store[fd])) >= 0)
 		//	return (split_store_in_line(&store[fd], line, n));
-		printf("This is store[fd] | %s\n", store[fd]);
+		//printf("This is store[fd] | %s\n", store[fd]);
 	}
-	}
-	//printf("Buf:|%s\n", buf);
 	return (0);
 }

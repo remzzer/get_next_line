@@ -1,10 +1,10 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-//int		find_c(char *str);
-//int		is_store_empty(char *store);
+int		find_c(char *str);
+int		is_store_empty(char *store);
 char	*ft_strdup(const char *src);
-//int		get_next_line(int fd, char **line);
+int		get_next_line(int fd, char **line);
 
 
 int		main(int argc, char **argv)
