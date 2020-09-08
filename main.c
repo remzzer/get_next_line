@@ -17,9 +17,9 @@ int		main(int argc, char **argv)
 	}
 	if (r_read == -1)
 		line = NULL;
-	printf("%d |%s\n", r_read, line);
-	if (line)
-		free(line);
+	//printf("%d |%s\n", r_read, line);
+	//if (line)
+		//free(line);
 	close(fd);
 	return (0);
 }

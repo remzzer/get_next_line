@@ -21,25 +21,7 @@ size_t		ft_strlen(const char *str)
 		i++;
 	return (i);
 }
-/*
-size_t		ft_strlcpy(char *dst, const char *src, size_t dst_size)
-{
-	size_t		i;
 
-	if (!src || !dst)
-		return (0);
-	if (dst_size == 0)
-		return (ft_strlen(src));
-	i = 0;
-	while (i < dst_size - 1 && src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
-}
-*/
 char		*ft_strnew(int len)
 {
 	char	*str;
@@ -57,39 +39,34 @@ char		*ft_strnew(int len)
 	return (str);
 }
 
-char		*ft_strdup(const char *src)
+char		*ft_strdup(char *src)
 {
 	char	*dst;
-	size_t	len;
-	size_t	i;
-	
-	printf("src: %s", src);
+	int		len;
+
 	len = ft_strlen(src);
-	printf("len : %zu", len);
-	i = 0;
 	if (!(dst = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	while (i < len)
+	len = 0;
+	while (src[len])
 	{
-		dst[i] = src[i];
-		i++;
+		dst[len] = src[len];
+		len++;
 	}
-	dst[i] = '\0';
-	printf("dst :%s", dst);
+	dst[len] = '\0';
 	return (dst);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char *s1, char *s2)
 {
 	size_t		i;
 	size_t		j;
 	char		*str;
-	if (!s1)
-		printf("ERROR, s1 existe pas");
-	if (!s2)
-		printf("ERROR S2");
-		//return (NULL);
-	if (!(str = malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2)) + 1))
+	if (!(s1) && !(s2))
+		return (NULL);
+	if (!(s1))
+		return (ft_strdup(s2));
+	if (!(str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
 	i = 0;
 	while (s1[i])
@@ -97,7 +74,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 		str[i] = s1[i];
 		i++;
 	}
-	//free(s1);
+	free(s1);
 	j = 0;
 	while (s2[j])
 	{

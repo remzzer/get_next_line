@@ -20,11 +20,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define BUFFER_SIZE 32
+#define BUFFER_SIZE 3
 
 size_t		ft_strlen(const char *str);
-char		*ft_strdup(const char *src);
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strdup(char *src);
+char		*ft_strjoin(char *s1, char *s2);
 char		*ft_strnew(int len);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dst_size);
 int			get_next_line(int fd, char **line);
