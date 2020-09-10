@@ -22,23 +22,6 @@ size_t		ft_strlen(const char *str)
 	return (i);
 }
 
-char		*ft_strnew(int len)
-{
-	char	*str;
-	int		i;
-
-	i = 0;
-	if (!(str = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	while (i < len)
-	{
-		str[i] = '\0';
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
 char		*ft_strdup(char *src)
 {
 	char	*dst;
@@ -84,4 +67,24 @@ char		*ft_strjoin(char *s1, char *s2)
 	}
 	str[i] = '\0';
 	return (str);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == c)
+		{
+			return ((char *)s);
+		}
+		s++;
+	}
+	if (c == 0)
+	{
+		return ((char *)s);
+	}
+	else
+	{
+		return (NULL);
+	}
 }

@@ -50,7 +50,7 @@ int		get_next_line(int fd, char **line)
 	{
 		return (-1);
 	}
-	while ((r_read = read(fd, buf, BUFFER_SIZE)) >= 0)
+	while ((r_read = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[r_read] = '\0';
 		store[fd] = ft_strjoin(store[fd], buf);
@@ -62,13 +62,12 @@ int		get_next_line(int fd, char **line)
 			return (split_store_in_line(&store[fd], line, n));
 		}
 	}
-	/*
-	if (store[fd])
+	if ((n = find_c(store[fd])) >= 0)
 	{
-		*line = store[fd];
-		free(store[fd]);
-		return (0);
+		return (split_store_in_line(&store[fd], line, n));
 	}
-	*/
+	//printf("Store: %s\n", store[fd]);
+	*line = *store;
+	*store = 0;
 	return (0);
 }
