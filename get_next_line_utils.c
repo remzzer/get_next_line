@@ -45,6 +45,7 @@ char		*ft_strjoin(char *s1, char *s2)
 	size_t		i;
 	size_t		j;
 	char		*str;
+
 	if (!(s1) && !(s2))
 		return (NULL);
 	if (!(s1))
@@ -60,31 +61,7 @@ char		*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	j = 0;
 	while (s2[j])
-	{
-	str[i] = s2[j];
-	i++;
-	j++;
-	}
+		str[i++] = s2[j++];
 	str[i] = '\0';
 	return (str);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == c)
-		{
-			return ((char *)s);
-		}
-		s++;
-	}
-	if (c == 0)
-	{
-		return ((char *)s);
-	}
-	else
-	{
-		return (NULL);
-	}
 }

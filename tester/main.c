@@ -48,6 +48,6 @@ int main(int argc, char **argv)
 			printf("-----------\nEnd of stdin\n");
 		close(fd);
 	}
-	while(1);
+	//while(1);
 	return (0);
 }

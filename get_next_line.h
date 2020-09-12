@@ -13,14 +13,16 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-#define BUFFER_SIZE 300
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 300
+# endif
 
 size_t		ft_strlen(const char *str);
 char		*ft_strdup(char *src);
