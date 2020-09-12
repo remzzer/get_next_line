@@ -58,12 +58,15 @@ int		get_next_line(int fd, char **line)
 			return (split_store_in_line(&store[fd], line, n));
 	}
 	if (r_read < 0)
-	{
 		return (-1);
-	}
 	if (store[fd] && (n = find_c(store[fd])) >= 0)
 		return (split_store_in_line(&store[fd], line, n));
-	*line = store[fd];
-	store[fd] = 0;
+	else if (store[fd])
+	{
+		*line = store[fd];
+		store[fd] = NULL;
+		return (0);
+	}
+	*line = ft_strdup("");
 	return (0);
 }
