@@ -48,7 +48,7 @@ int		get_next_line(int fd, char **line)
 	char			buf[BUFFER_SIZE + 1];
 	static char		*store[64];
 
-	if ((fd < 0) || (BUFFER_SIZE <= 0) || (!line))
+	if ((fd < 0) || (BUFFER_SIZE <= 0) || (!line) || read(fd, buf, 0) > 0)
 		return (-1);
 	while ((r_read = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
@@ -57,8 +57,6 @@ int		get_next_line(int fd, char **line)
 		if ((n = find_c(store[fd])) >= 0)
 			return (split_store_in_line(&store[fd], line, n));
 	}
-	if (r_read < 0)
-		return (-1);
 	if (store[fd] && (n = find_c(store[fd])) >= 0)
 		return (split_store_in_line(&store[fd], line, n));
 	else if (store[fd])
